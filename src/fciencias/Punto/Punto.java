@@ -1,4 +1,5 @@
 package src.fciencias.Punto;
+import java.util.Comparator;
 
 /**
  * Clase que modela un punto en R^2.
@@ -6,7 +7,7 @@ package src.fciencias.Punto;
  * @version 2.0
  */
 
-public class Punto{
+public class Punto<T> implements Comparator<T>{
     protected double coorX;
     protected double coorY;
     protected String id;
@@ -18,6 +19,11 @@ public class Punto{
 	coorX = 0.0;
 	coorY = 0.0;
 	id = "O";
+    }
+
+    @Override
+    public int compare (T p1, T p2) {
+	return -1;
     }
     
     /**
@@ -37,9 +43,9 @@ public class Punto{
      * @param punto {@code Punto} a copiar.
      */
     public Punto(Punto punto) {
-	coorX = punto.obtenerX();
-	coorY = punto.obtenerY();
-	id    = punto.obtenerId();
+	coorX = punto.coorX;
+	coorY = punto.coorY;
+	id    = punto.id;
     }
     
     /**
@@ -116,6 +122,6 @@ public class Punto{
      *                                 igual que {@code p}. {@code false} en otro caso.
      */
     public boolean equals(Punto p) {
-	return (coorX == p.obtenerX() && coorY == p.obtenerY()) ? (id.equals(p.obtenerId())) ? true : false : false;
+	return (coorX == p.coorX && coorY == p.coorY) ? (id.equals(p.id)) ? true : false : false;
     }    
 }
